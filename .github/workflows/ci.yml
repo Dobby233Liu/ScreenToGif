@@ -19,9 +19,9 @@ jobs:
         run: |
           git clone https://github.com/sharpdx/SharpDX.git --depth=1
           cd SharpDX
-          ..\msbuild\artifacts\bin\bootstrap\net472\MSBuild\Current\Bin\MSBuild SharpDX.sln /t:Clean /m /p:Configuration=Release;Platform="Any CPU"
+          ..\..\msbuild\artifacts\bin\bootstrap\net472\MSBuild\Current\Bin\MSBuild SharpDX.sln /t:Clean /m /p:Configuration=Release;Platform="Any CPU"
           nuget restore
-          ..\msbuild\artifacts\bin\bootstrap\net472\MSBuild\Current\Bin\MSBuild SharpDX.sln /t:Build;Pack /p:Configuration=Release;Platform="Any CPU" /m
+          ..\..\msbuild\artifacts\bin\bootstrap\net472\MSBuild\Current\Bin\MSBuild SharpDX.sln /t:Build;Pack /p:Configuration=Release;Platform="Any CPU" /m
       - name: Build for Debug & Release, Any CPU
         run: |
           ..\msbuild\artifacts\bin\bootstrap\net472\MSBuild\Current\Bin\MSBuild /m /p:Configuration=Release /p:Platform="Any CPU"
