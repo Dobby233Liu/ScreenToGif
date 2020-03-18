@@ -12,8 +12,8 @@ jobs:
       - uses: seanmiddleditch/gha-setup-vsdevenv@v1
       - name: Build for Debug & Release, Any CPU
         run: |
-          msbuild /p:Configuration=Release /p:Platform=AnyCPU
-          msbuild /p:Configuration=Debug /p:Platform=AnyCPU
+          msbuild /m /p:Configuration=Release /p:Platform="Any CPU"
+          msbuild /m /p:Configuration=Debug /p:Platform="Any CPU"
       - uses: actions/upload-artifact@v1.0.0
         with:
           name: Release|AnyCPU
