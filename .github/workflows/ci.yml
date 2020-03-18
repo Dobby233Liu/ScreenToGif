@@ -9,12 +9,19 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Add msbuild to PATH
-        uses: microsoft/setup-msbuild@v1.0.0
+      - uses: seanmiddleditch/gha-setup-vsdevenv@v1
+      - run: |
+          git clone https://github.com/sharpdx/SharpDX.git --depth=1
+          cd SharpDX
+          .\build.cmd
+      - run: |
+          git clone https://github.com/microsoft/msbuild.git --depth=1 --branch vs16.5 ..\msbuild
+          cd ..\msbuild
+          .\build.cmd
       - name: Build for Debug & Release, Any CPU
         run: |
-          msbuild /m /p:Configuration=Release /p:Platform="Any CPU"
-          msbuild /m /p:Configuration=Debug /p:Platform="Any CPU"
+          ..\msbuild\artifacts\bin\bootstrap\net472\MSBuild\Current\Bin\MSBuild /m /p:Configuration=Release /p:Platform="Any CPU"
+          ..\msbuild\artifacts\bin\bootstrap\net472\MSBuild\Current\Bin\MSBuild /m /p:Configuration=Debug /p:Platform="Any CPU"
       - uses: actions/upload-artifact@v1.0.0
         with:
           name: Release|AnyCPU
