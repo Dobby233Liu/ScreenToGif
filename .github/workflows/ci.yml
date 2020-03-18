@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: seanmiddleditch/gha-setup-vsdevenv@v1
+      - name: Build for Debug & Release, Any CPU
+        run: |
+          msbuild /p:Configuration=Release /p:Platform=AnyCPU
+          msbuild /p:Configuration=Debug /p:Platform=AnyCPU
+      - uses: actions/upload-artifact@v1.0.0
+        with:
+          name: Release|AnyCPU
+          path: bin\Release
+      - uses: actions/upload-artifact@v1.0.0
+        with:
+          name: Debug|AnyCPU
+          path: bin\Debug
