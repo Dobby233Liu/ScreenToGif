@@ -15,6 +15,7 @@ jobs:
           git clone https://github.com/microsoft/msbuild.git --depth=1 --branch vs16.5 ..\msbuild
           cd ..\msbuild
           .\build.cmd
+        shell: cmd
       - name: "Build SharpDX"
         run: |
           git clone https://github.com/sharpdx/SharpDX.git --depth=1
