@@ -13,7 +13,7 @@ jobs:
         run: |
           git clone https://github.com/microsoft/msbuild.git --depth=1 --branch vs16.5 ..\msbuild
           cd ..\msbuild
-          .\build.cmd
+          .\build.cmd /p:CreateBootstrap=true
       - uses: seanmiddleditch/gha-setup-vsdevenv@v1
       - name: "Build SharpDX"
         run: |
