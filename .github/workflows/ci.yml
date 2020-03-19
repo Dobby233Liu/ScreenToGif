@@ -15,13 +15,6 @@ jobs:
           cd ..\msbuild
           .\build.cmd /p:CreateBootstrap=true
       - uses: seanmiddleditch/gha-setup-vsdevenv@v1
-      - name: "Build SharpDX"
-        run: |
-          git clone https://github.com/sharpdx/SharpDX.git --depth=1
-          $(Get-Location).Path
-          cd ..\msbuild\artifacts\bin\bootstrap\net472\MSBuild\Current\Bin\
-          MSBuild D:\a\ScreenToGif\ScreenToGif\SharpDX\SharpDX.sln /t:Clean /m /p:Configuration=Release;Platform="Any CPU"
-          MSBuild D:\a\ScreenToGif\ScreenToGif\SharpDX\SharpDX.sln /restore /t:Build;Pack /p:Configuration=Release;Platform="Any CPU" /m
       - name: Build for Debug & Release, Any CPU
         run: |
           $(Get-Location).Path
