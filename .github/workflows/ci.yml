@@ -18,14 +18,14 @@ jobs:
       - name: "Build SharpDX"
         run: |
           git clone https://github.com/sharpdx/SharpDX.git --depth=1
-          cd SharpDX
-          ..\msbuild\artifacts\bin\bootstrap\net472\MSBuild\Current\Bin\MSBuild SharpDX.sln /t:Clean /m /p:Configuration=Release;Platform="Any CPU"
-          nuget restore
-          ..\msbuild\artifacts\bin\bootstrap\net472\MSBuild\Current\Bin\MSBuild SharpDX.sln /t:Build;Pack /p:Configuration=Release;Platform="Any CPU" /m
+          cd ..\msbuild\artifacts\bin\bootstrap\net472\MSBuild\Current\Bin\
+          MSBuild D:\a\ScreenToGif\SharpDX\SharpDX.sln /t:Clean /m /p:Configuration=Release;Platform="Any CPU"
+          MSBuild D:\a\ScreenToGif\SharpDX\SharpDX.sln /restore /t:Build;Pack /p:Configuration=Release;Platform="Any CPU" /m
       - name: Build for Debug & Release, Any CPU
         run: |
-          .\msbuild\artifacts\bin\bootstrap\net472\MSBuild\Current\Bin\MSBuild /m /p:Configuration=Release /p:Platform="Any CPU"
-          .\msbuild\artifacts\bin\bootstrap\net472\MSBuild\Current\Bin\MSBuild /m /p:Configuration=Debug /p:Platform="Any CPU"
+          cd ..\msbuild\artifacts\bin\bootstrap\net472\MSBuild\Current\Bin\
+          MSBuild D:\a\ScreenToGif\GifRecorder.sln /m /p:Configuration=Release /p:Platform="Any CPU"
+          MSBuild D:\a\ScreenToGif\GifRecorder.sln /m /p:Configuration=Debug /p:Platform="Any CPU"
       - uses: actions/upload-artifact@v1.0.0
         with:
           name: Release|AnyCPU
