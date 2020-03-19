@@ -20,14 +20,14 @@ jobs:
           git clone https://github.com/sharpdx/SharpDX.git --depth=1
           $(Get-Location).Path
           cd ..\msbuild\artifacts\bin\bootstrap\net472\MSBuild\Current\Bin\
-          MSBuild D:\a\ScreenToGif\SharpDX\SharpDX.sln /t:Clean /m /p:Configuration=Release;Platform="Any CPU"
-          MSBuild D:\a\ScreenToGif\SharpDX\SharpDX.sln /restore /t:Build;Pack /p:Configuration=Release;Platform="Any CPU" /m
+          MSBuild D:\a\ScreenToGif\ScreenToGif\SharpDX\SharpDX.sln /t:Clean /m /p:Configuration=Release;Platform="Any CPU"
+          MSBuild D:\a\ScreenToGif\ScreenToGif\SharpDX\SharpDX.sln /restore /t:Build;Pack /p:Configuration=Release;Platform="Any CPU" /m
       - name: Build for Debug & Release, Any CPU
         run: |
           $(Get-Location).Path
           cd ..\msbuild\artifacts\bin\bootstrap\net472\MSBuild\Current\Bin\
-          MSBuild D:\a\ScreenToGif\GifRecorder.sln /m /p:Configuration=Release /p:Platform="Any CPU"
-          MSBuild D:\a\ScreenToGif\GifRecorder.sln /m /p:Configuration=Debug /p:Platform="Any CPU"
+          MSBuild D:\a\ScreenToGif\ScreenToGif\GifRecorder.sln /m /p:Configuration=Release /p:Platform="Any CPU"
+          MSBuild D:\a\ScreenToGif\ScreenToGif\GifRecorder.sln /m /p:Configuration=Debug /p:Platform="Any CPU"
       - uses: actions/upload-artifact@v1.0.0
         with:
           name: Release|AnyCPU
